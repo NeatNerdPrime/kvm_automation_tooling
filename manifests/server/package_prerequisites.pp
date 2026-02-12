@@ -10,28 +10,16 @@ class kvm_automation_tooling::server::package_prerequisites () {
   case $facts['os']['family'] {
     'RedHat': {
       $packages = [
-        'java-17-openjdk-headless',
         'net-tools',
         'procps-ng',
         'which',
       ]
     }
     'Debian': {
-      $common = [
+      $packages = [
         'net-tools',
         'procps',
       ]
-      case $facts['os']['release']['major'] {
-        '10': {
-          $packages = $common + ['openjdk-11-jre-headless']
-        }
-        '13': {
-          $packages = $common + ['openjdk-21-jre-headless']
-        }
-        default: {
-          $packages = $common + ['openjdk-17-jre-headless']
-        }
-      }
     }
     default: {
       fail("Unsupported os: ${facts['os']}")

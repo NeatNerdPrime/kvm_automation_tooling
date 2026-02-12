@@ -4,7 +4,6 @@ include RspecPuppetFacts
 describe 'kvm_automation_tooling::server::package_prerequisites' do
   let(:el_prereqs) do
     [
-      'java-17-openjdk-headless',
       'net-tools',
       'procps-ng',
       'which',
@@ -12,21 +11,18 @@ describe 'kvm_automation_tooling::server::package_prerequisites' do
   end
   let(:debian_prereqs) do
     [
-      'openjdk-17-jre-headless',
       'net-tools',
       'procps',
     ]
   end
   let(:debian10_prereqs) do
     [
-      'openjdk-11-jre-headless',
       'net-tools',
       'procps',
     ]
   end
   let(:debian13_prereqs) do
     [
-      'openjdk-21-jre-headless',
       'net-tools',
       'procps',
     ]
