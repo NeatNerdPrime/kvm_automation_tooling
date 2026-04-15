@@ -34,8 +34,8 @@ TODO:
 These are the versions I was using when I built this module.
 
 * Ruby 3.2+
-* Puppet 8+
-* Bolt 4+
+* OpenVox Puppet 8+
+* OpenBolt 5+
 * Terraform 1.10+
 * [libvirt](https://libvirt.org/) 10.0.0
 * libvirt-dev (for the ruby bindings using ruby-libvirt from the Gemfile)
