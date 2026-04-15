@@ -7,7 +7,6 @@
 ### Classes
 
 * [`kvm_automation_tooling`](#kvm_automation_tooling): ATM this is just a placeholder for the module so that rspec-puppet can get_module_name and setup the spec/fixtures/modules link correctly.
-* [`kvm_automation_tooling::server::package_prerequisites`](#kvm_automation_tooling--server--package_prerequisites): Ensures package dependencies for openvox-server or openvoxdb.  This class can be used for cases where openvox-server or openvoxdb packages ar
 
 ### Functions
 
@@ -53,7 +52,6 @@
 * [`kvm_automation_tooling::install_openvox`](#kvm_automation_tooling--install_openvox): Install OpenVox Puppet agents and primary services on the cluster without any attempts at configuration.  The openvox_* install parameters ar
 * [`kvm_automation_tooling::standup_cluster`](#kvm_automation_tooling--standup_cluster): Standup one cluster of KVM virtual machines based on a given Kvm_automation_tooling::Vm_spec structure.  Makes use of terraform under the hoo
 * [`kvm_automation_tooling::subplans::install_component`](#kvm_automation_tooling--subplans--install_component): Installs a single openvox component on behalf of the caller.  Uses puppet-openvox_bootstrap tasks.
-* [`kvm_automation_tooling::subplans::install_server_prerequisites`](#kvm_automation_tooling--subplans--install_server_prerequisites): Installs the platform specific set of package dependencies for the openvox-server and openvoxdb packages if the installation parameters indic
 * [`kvm_automation_tooling::subplans::lookup_platform`](#kvm_automation_tooling--subplans--lookup_platform): Given a TargetSpec, for each Target that does not yet have a *platform* variable set, obtain platform details and set the *platform* variable
 * [`kvm_automation_tooling::subplans::manage_base_image_volume`](#kvm_automation_tooling--subplans--manage_base_image_volume): Ensure that the base image is downloaded for the given platform and imported into libvirt as a volume. Ensure that a libvirt pool for platfor
 * [`kvm_automation_tooling::subplans::setup_cluster_ssh`](#kvm_automation_tooling--subplans--setup_cluster_ssh): This plan manages two aspects of ssh access within the cluster.  1. SSH between *controller* and *destination* vms as *user*. 2. SSH between 
@@ -65,14 +63,6 @@
 
 ATM this is just a placeholder for the module so that rspec-puppet can
 get_module_name and setup the spec/fixtures/modules link correctly.
-
-### <a name="kvm_automation_tooling--server--package_prerequisites"></a>`kvm_automation_tooling::server::package_prerequisites`
-
-Ensures package dependencies for openvox-server or openvoxdb.
-
-This class can be used for cases where openvox-server or openvoxdb
-packages are downloaded and installed directly, bypassing dependency
-handling by package managers like apt or dnf.
 
 ## Functions
 
@@ -1552,56 +1542,6 @@ Data type: `Kvm_automation_tooling::Openvox_install_params`
 The parameters for the openvox installation.
 
 ##### <a name="-kvm_automation_tooling--subplans--install_component--defaults"></a>`defaults`
-
-Data type: `Kvm_automation_tooling::Openvox_install_params`
-
-The default parameters for the openvox installation.
-
-### <a name="kvm_automation_tooling--subplans--install_server_prerequisites"></a>`kvm_automation_tooling::subplans::install_server_prerequisites`
-
-Installs the platform specific set of package dependencies for
-the openvox-server and openvoxdb packages if the installation
-parameters indicate we are install a pre-release package from
-artifacts.
-
-The pre-release packages are downloaded directly from the artifacts
-server and installed with rpm or dpkg, so no package dependencies
-are automatically installed by a higher layer like apt or dnf, which
-is why we need this subplan.
-
-#### Parameters
-
-The following parameters are available in the `kvm_automation_tooling::subplans::install_server_prerequisites` plan:
-
-* [`targets`](#-kvm_automation_tooling--subplans--install_server_prerequisites--targets)
-* [`package`](#-kvm_automation_tooling--subplans--install_server_prerequisites--package)
-* [`params`](#-kvm_automation_tooling--subplans--install_server_prerequisites--params)
-* [`defaults`](#-kvm_automation_tooling--subplans--install_server_prerequisites--defaults)
-
-##### <a name="-kvm_automation_tooling--subplans--install_server_prerequisites--targets"></a>`targets`
-
-Data type: `TargetSpec`
-
-The targets to install the packages on.
-
-##### <a name="-kvm_automation_tooling--subplans--install_server_prerequisites--package"></a>`package`
-
-Data type: `String`
-
-The name of the package to install. The subplan
-will do nothing if the package does not match one needing
-pre-requisite packages.
-
-##### <a name="-kvm_automation_tooling--subplans--install_server_prerequisites--params"></a>`params`
-
-Data type: `Kvm_automation_tooling::Openvox_install_params`
-
-The parameters for the openvox installation.
-If evaluation of params and defaults does not indicate that
-the package is a pre-release package, then this plan will
-do nothing.
-
-##### <a name="-kvm_automation_tooling--subplans--install_server_prerequisites--defaults"></a>`defaults`
 
 Data type: `Kvm_automation_tooling::Openvox_install_params`
 

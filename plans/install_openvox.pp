@@ -89,27 +89,6 @@ plan kvm_automation_tooling::install_openvox(
   # Collect facts and add them to the targets.
   run_plan('facts', 'targets' => $all_targets)
 
-  # Install pre-requisite packages for the openvox-server
-  # and openvoxdb packages if required (pre-release packages).
-  [
-    [$server_targets, 'openvox-server', $openvox_server_params],
-    [($db_targets - $server_targets), 'openvoxdb', $openvox_db_params],
-  ].each |$i| {
-    $targets = $i[0]
-    $package = $i[1]
-    $params  = $i[2]
-
-    if $targets.empty() { next() }
-
-    run_plan(
-      'kvm_automation_tooling::subplans::install_server_prerequisites',
-      'targets'  => $targets,
-      'package'  => $package,
-      'params'   => $params,
-      'defaults' => $install_defaults,
-    )
-  }
-
   $server_installations = [
     [$server_targets, 'openvox-server', $openvox_server_params],
     [$db_targets, 'openvoxdb', $openvox_db_params],
