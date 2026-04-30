@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.6.0 (2026-04-30)
+
+* Bump actions/checkout from 5 to 6
+* (doc) Update README bolt/puppet versions for openbolt 5 openvox 8
+* (plans) Remove the install_server_prerequisites subplan since
+  dependencies are now handled by the 1.4 openvox_bootstrap tasks.
+* Pin openvox_bootstrap to ~> 1.4 which had an update to ensure that
+  packages installed from local files installed their dependencies,
+  allowing this module to drop installing java as a prerequisite for
+  openvox server installation.
+* rspec-puppet-facts: Require 5.x
+* voxpupuli-puppet-lint-plugins: Require 7.x
+* Migrate the dependencies for running/testing the module to
+  openvox/open-bolt
+
 ## 2.5.0 (2026-01-06)
 
 * (maint) Pin puppet-openvox_bootstrap to >= 1.3.0 (allows for testing
